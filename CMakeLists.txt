@@ -250,7 +250,7 @@ if(MSVC)
         message(STATUS "Using DirectX SDK directory: ${DXSDK_DIR}")
     endif()
 
-    option(FORCE_STATIC_VCRT "Force /MT for static VC runtimes" OFF)
+    option(FORCE_STATIC_VCRT "Force /MT for static VC runtimes" ON)
     if(FORCE_STATIC_VCRT)
         foreach(flag_var
                 CMAKE_C_FLAGS CMAKE_C_FLAGS_DEBUG CMAKE_C_FLAGS_RELEASE
