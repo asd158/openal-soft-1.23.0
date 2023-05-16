@@ -93,24 +93,24 @@ include(GNUInstallDirs)
 find_package(PkgConfig)
 
 
-option(ALSOFT_DLOPEN  "Check for the dlopen API for loading optional libs"  ON)
+option(ALSOFT_DLOPEN  "Check for the dlopen API for loading optional libs"  OFF)
 
 option(ALSOFT_WERROR  "Treat compile warnings as errors"      OFF)
 
-option(ALSOFT_UTILS "Build utility programs"  ON)
-option(ALSOFT_NO_CONFIG_UTIL "Disable building the alsoft-config utility" OFF)
+option(ALSOFT_UTILS "Build utility programs"  OFF)
+option(ALSOFT_NO_CONFIG_UTIL "Disable building the alsoft-config utility" ON)
 
-option(ALSOFT_EXAMPLES  "Build example programs"  ON)
+option(ALSOFT_EXAMPLES  "Build example programs"  OFF)
 
-option(ALSOFT_INSTALL "Install main library" ON)
-option(ALSOFT_INSTALL_CONFIG "Install alsoft.conf sample configuration file" ON)
-option(ALSOFT_INSTALL_HRTF_DATA "Install HRTF data files" ON)
-option(ALSOFT_INSTALL_AMBDEC_PRESETS "Install AmbDec preset files" ON)
-option(ALSOFT_INSTALL_EXAMPLES "Install example programs (alplay, alstream, ...)" ON)
-option(ALSOFT_INSTALL_UTILS "Install utility programs (openal-info, alsoft-config, ...)" ON)
-option(ALSOFT_UPDATE_BUILD_VERSION "Update git build version info" ON)
+option(ALSOFT_INSTALL "Install main library" OFF)
+option(ALSOFT_INSTALL_CONFIG "Install alsoft.conf sample configuration file" OFF)
+option(ALSOFT_INSTALL_HRTF_DATA "Install HRTF data files" OFF)
+option(ALSOFT_INSTALL_AMBDEC_PRESETS "Install AmbDec preset files" OFF)
+option(ALSOFT_INSTALL_EXAMPLES "Install example programs (alplay, alstream, ...)" OFF)
+option(ALSOFT_INSTALL_UTILS "Install utility programs (openal-info, alsoft-config, ...)" OFF)
+option(ALSOFT_UPDATE_BUILD_VERSION "Update git build version info" OFF)
 
-option(ALSOFT_EAX "Enable legacy EAX extensions" ${WIN32})
+option(ALSOFT_EAX "Enable legacy EAX extensions" OFF)
 
 option(ALSOFT_SEARCH_INSTALL_DATADIR "Search the installation data directory" OFF)
 if(ALSOFT_SEARCH_INSTALL_DATADIR)
@@ -253,10 +253,16 @@ if(MSVC)
     option(FORCE_STATIC_VCRT "Force /MT for static VC runtimes" ON)
     if(FORCE_STATIC_VCRT)
         foreach(flag_var
-                CMAKE_C_FLAGS CMAKE_C_FLAGS_DEBUG CMAKE_C_FLAGS_RELEASE
-                CMAKE_C_FLAGS_MINSIZEREL CMAKE_C_FLAGS_RELWITHDEBINFO
-                CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
-                CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
+                CMAKE_C_FLAGS
+                CMAKE_C_FLAGS_DEBUG
+                CMAKE_C_FLAGS_RELEASE
+                CMAKE_C_FLAGS_MINSIZEREL
+                CMAKE_C_FLAGS_RELWITHDEBINFO
+                CMAKE_CXX_FLAGS
+                CMAKE_CXX_FLAGS_DEBUG
+                CMAKE_CXX_FLAGS_RELEASE
+                CMAKE_CXX_FLAGS_MINSIZEREL
+                CMAKE_CXX_FLAGS_RELWITHDEBINFO)
             if(${flag_var} MATCHES "/MD")
                 string(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
             endif()
