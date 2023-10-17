@@ -271,6 +271,7 @@ if (MSVC)
         ENDFOREACH ()
     endif ()
 else ()
+    SET(CMAKE_POSITION_INDEPENDENT_CODE true)
     set(C_FLAGS ${C_FLAGS} -Winline -Wunused -Wall -Wextra -Wshadow -Wconversion -Wcast-align
             -Wpedantic
             $<$<COMPILE_LANGUAGE:CXX>:-Wold-style-cast -Wnon-virtual-dtor -Woverloaded-virtual>)
